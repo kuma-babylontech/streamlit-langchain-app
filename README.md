@@ -8,3 +8,9 @@
 uv venv --python 3.10
 uv pip install streamlit==1.26.0
 ```
+
+## 実行方法
+
+```bash
+streamlit run app.py --server.port 8080
+```
