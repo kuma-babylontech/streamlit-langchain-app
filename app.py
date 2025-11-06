@@ -4,6 +4,17 @@ import streamlit as st
 from dotenv import load_dotenv
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage
+from langchain.agents import AgentType, initialize_agent, load_tools
+
+def create_agent_chain():
+    chat = ChatOpenAI(
+        model_name=os.environ["OPENAI_API_MODEL"],
+        temperature=os.environ["OPENAI_API_TEMPERATURE"],
+        streaming=True,
+    )
+
+    tools = load_tools(["ddg-search", "wikipedia"])
+    return initialize_agent(tools, chat, agent=AgentType.OPENAI_FUNCTIONS)
 
 load_dotenv()
 
